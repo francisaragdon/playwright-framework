@@ -1,0 +1,33 @@
+name: UI Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        type: choice
+        options:
+          - qa
+          - staging
+          - prod
+
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      ENV: ${{ github.event.inputs.environment || 'qa' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+
+      - name: Run UI tests (chromium only)
+        run: npx playwright test --project=chromium

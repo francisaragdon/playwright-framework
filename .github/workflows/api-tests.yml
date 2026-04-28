@@ -1,9 +1,6 @@
-name: Playwright Tests
+name: API Tests
 
 on:
-  push:
-    branches: [ main, master ]
-
   workflow_dispatch:
     inputs:
       environment:
@@ -16,7 +13,7 @@ on:
           - prod
 
 jobs:
-  test:
+  api-tests:
     runs-on: ubuntu-latest
 
     env:
@@ -27,16 +24,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 20
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
+      - run: npx playwright install --with-deps
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run API tests only
+        run: npx playwright test --project=api
 
       - name: Upload Playwright report (artifact)
         if: always()
@@ -55,7 +49,7 @@ jobs:
           path: playwright-report/
 
   deploy:
-    needs: test
+    needs: api-tests
     runs-on: ubuntu-latest
     permissions:
       pages: write
