@@ -5,7 +5,7 @@ import { config } from '../../src/config/env';
 test('User login', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goToUrl(config.baseUrl)
-    await loginPage.login(config.username,config.password);
-    await loginPage.assertTitle(config.pageTitle);
+    await loginPage.login(config.username, config.password);
+    await loginPage.assertTitle("Swag Labs");
 });
 

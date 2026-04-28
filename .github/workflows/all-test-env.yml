@@ -43,7 +43,11 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          BASE_URL: ${{ secrets.API_BASE_URL }}
+          ENV: ${{ github.event.inputs.environment || 'qa' }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          STANDARD_USERNAME: ${{ secrets.STANDARD_USERNAME }}
+          STANDARD_PASSWORD: ${{ secrets.STANDARD_PASSWORD }}
 
       - name: Upload Pages artifact
         if: ${{ !cancelled() }}
