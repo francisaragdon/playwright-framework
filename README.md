@@ -46,13 +46,9 @@ This project uses GitHub Actions to automate test execution.
 * **On push** → defaults to **QA**
 * **Manual run** → choose environment via GitHub Actions
 
-### Environment Handling
+### Report
 
-* Environment-specific values (e.g. `API_BASE_URL`) are stored in **GitHub Secrets**
-* The workflow dynamically selects the correct values based on:
-
-  * trigger type (push vs manual)
-  * selected environment
+* Uploads report as artifact accessible via GitHub Pages after every run
 
 
 ---
