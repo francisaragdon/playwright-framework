@@ -16,8 +16,7 @@ jobs:
   api-tests:
     runs-on: ubuntu-latest
 
-    env:
-      ENV: ${{ github.event.inputs.environment || 'qa' }}
+    environment: ${{ github.event.inputs.environment || 'qa' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +30,8 @@ jobs:
 
       - name: Run API tests only
         run: npx playwright test --project=api
+        env:
+          BASE_URL: ${{ secrets.API_BASE_URL }}
 
       - name: Upload Playwright report (artifact)
         if: always()
@@ -50,6 +51,7 @@ jobs:
 
   deploy:
     needs: api-tests
+    if: always()
     runs-on: ubuntu-latest
     permissions:
       pages: write

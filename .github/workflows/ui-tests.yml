@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Select environment'
+        description: "Select environment"
         required: true
         type: choice
         options:
@@ -16,8 +16,7 @@ jobs:
   ui-tests:
     runs-on: ubuntu-latest
 
-    env:
-      ENV: ${{ github.event.inputs.environment || 'qa' }}
+    environment: ${{ github.event.inputs.environment || 'qa' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -31,3 +30,26 @@ jobs:
 
       - name: Run UI tests (chromium only)
         run: npx playwright test --project=chromium
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+
+      # GitHub Pages deployment steps
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: playwright-report/
+
+  deploy:
+    needs: ui-tests
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
