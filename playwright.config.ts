@@ -27,7 +27,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    headless: true,
+    headless: false,
     // launchOptions: {
     //   slowMo: 500,
     // },
@@ -36,7 +36,7 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-   projects: [
+  projects: [
     {
       name: 'api',
       testMatch: /.*\.api\.spec\.ts/,
@@ -59,7 +59,7 @@ export default defineConfig({
       testMatch: /.*\.ui\.spec\.ts/,
       use: { browserName: 'webkit' },
     },
-    
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

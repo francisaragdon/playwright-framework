@@ -1,0 +1,30 @@
+{
+  "valid": [
+    {
+      "username": "standard_user",
+      "password": "secret_sauce"
+    },
+    {
+      "username": "visual_user",
+      "password": "secret_sauce"
+    }
+  ],
+  "invalid": [
+    {
+      "username": "invalid_user",
+      "password": "invalid_password"
+    },
+    {
+      "username": "invalid_user2",
+      "password": "invalid_password2"
+    }
+  ],
+  "ui": {
+    "loginPage": {
+      "expectedTitle": "Swag Labs"
+    },
+    "errorMessage": {
+      "expectedText": "Epic sadface: Username and password do not match any user in this service"
+    }
+  }
+}

@@ -6,12 +6,14 @@ export class LoginPage {
     readonly username: Locator;
     readonly password: Locator;
     readonly loginBtn: Locator;
+    readonly errorMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.username = page.locator('#user-name');
         this.password = page.locator('#password');
         this.loginBtn = page.locator('#login-button');
+        this.errorMessage = page.locator('.error-message-container');
     }
 
     async goToUrl(url: string) {
@@ -34,5 +36,11 @@ export class LoginPage {
         await this.goToUrl(url);
         await this.login(username, password);
         await this.assertTitle(title);
+    }
+
+    async assertErrorMessage(message: string) {
+        await test.step('Assert login error message', async () => {
+            await expect(this.errorMessage).toContainText(message);
+        });
     }
 }
