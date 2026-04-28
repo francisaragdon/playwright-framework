@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { config } from '../../config/env';
+import { LoginPage } from '../../src/ui/pages/LoginPage';
+import { config } from '../../src/config/env';
 
 test('User login', async ({ page }) => {
     const loginPage = new LoginPage(page);

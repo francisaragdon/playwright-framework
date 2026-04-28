@@ -1,5 +1,4 @@
 import { test, expect, Locator, Page } from '@playwright/test';
-import { config } from '../config/env';
 
 export class LoginPage {
     private page: Page;

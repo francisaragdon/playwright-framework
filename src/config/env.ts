@@ -7,5 +7,6 @@ export const config = {
     username: process.env.STANDARD_USERNAME!,
     password: process.env.STANDARD_PASSWORD!,
     pageTitle: process.env.PAGE_TITLE!,
+    apiBaseUrl: process.env.API_BASE_URL!,
 
 }
