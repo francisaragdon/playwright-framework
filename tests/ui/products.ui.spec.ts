@@ -1,4 +1,4 @@
-import { test } from '../fixtures/test-fixture';
+import { test } from '../fixtures/ui/test-fixture';
 import { config } from '../../src/config/env';
 import loginData from '../../src/data/ui/users.json';
 
