@@ -1,8 +1,8 @@
-import { test } from '../fixtures/ui/test-fixture';
-import { config } from '../../src/config/env';
-import loginData from '../../src/data/ui/users.json';
+import { test } from '../../fixtures/ui/test-fixture';
+import { ProductsPage } from '../../src/ui/pages/ProductsPage';
 
-test('User adds product to cart', async ({ productsPage }) => {
+test('User adds product to cart', async ({ loggedInPage }) => {
+    const productsPage = new ProductsPage(loggedInPage);
     await productsPage.addToCart('sauce-labs-backpack');
 });
 

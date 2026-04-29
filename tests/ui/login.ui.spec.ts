@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../src/ui/pages/LoginPage';
 import { config } from '../../src/config/env';
-import loginData from '../../src/data/ui/users.json';
+import loginData from '../../data/ui/users.json';
 
 test('User logins with valid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
