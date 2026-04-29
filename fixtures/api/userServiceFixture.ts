@@ -1,6 +1,6 @@
 import { test as base } from "@playwright/test";
-import { APIClient } from "../../../src/api/userService/apiClient";
-import { UserService } from "../../../src/api/userService/userService";
+import { APIClient } from "../../src/api/userService/apiClient";
+import { UserService } from "../../src/api/userService/userService";
 
 
 type UserServiceFixtures = {
