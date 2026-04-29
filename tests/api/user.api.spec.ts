@@ -1,8 +1,7 @@
 import { test, expect } from "../fixtures/api/userServiceFixture";
 import users from '../../src/data/api/users.json';
 
-
-test('[@smoke] Create a new user', async ({ userService }) => {
+test(' [@smoke] Create a new user', async ({ userService }) => {
 
     const payload = {
         name: "John Doe",
@@ -13,10 +12,9 @@ test('[@smoke] Create a new user', async ({ userService }) => {
 
 });
 
-
 test.describe('Create user with valid payload', () => {
     for (const user of users.validUsers) {
-        test(`Create user with name: ${user.name} and email: ${user.email}`, async ({ userService }) => {
+        test(`Create user with name: ${user.name}`, async ({ userService }) => {
             const response = await userService.postUser(user);
             expect(response.status()).toBe(201);
         });
