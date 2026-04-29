@@ -1,17 +1,17 @@
-import { test as base } from '@playwright/test';
+import { test as base, type Page } from '@playwright/test';
 import { LoginPage } from '../../../src/ui/pages/LoginPage';
 import { ProductsPage } from '../../../src/ui/pages/ProductsPage';
 import { config } from '../../../src/config/env';
 import loginData from '../../../src/data/ui/users.json';
 
 type MyFixtures = {
-    loginPage: LoginPage;
+    loggedInPage: Page;
     productsPage: ProductsPage;
 };
 
 export const test = base.extend<MyFixtures>({
-    loginPage: async ({ page }, use) => {
-        //login logic
+
+    loggedInPage: async ({ page }, use) => {
         const loginPage = new LoginPage(page);
         await loginPage.loginFlow(
             config.baseUrl,
@@ -19,12 +19,12 @@ export const test = base.extend<MyFixtures>({
             loginData.valid[0].password,
             loginData.ui.loginPage.expectedTitle
         );
-        await use(loginPage);
+        await use(page);
     },
 
-    productsPage: async ({ page }, use) => {
-        await use(new ProductsPage(page));
-    },
+    productsPage: async ({ loggedInPage }, use) => {
+        await use(new ProductsPage(loggedInPage));
+    }
 });
 
 export { expect } from '@playwright/test';
