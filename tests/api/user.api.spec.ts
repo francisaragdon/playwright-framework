@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/api/userServiceFixture";
+import { test, expect } from "../../fixtures/api/userServiceFixture";
 import users from '../../src/data/api/users.json';
 
 test(' [@smoke] Create a new user', async ({ userService }) => {
